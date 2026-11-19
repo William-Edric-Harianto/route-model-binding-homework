@@ -15,7 +15,7 @@ class CustomerCrudTest extends TestCase
         $response = $this->get(route('customer-list'));
 
         $response->assertOk();
-        $response->assertViewIs('view-customer');
+        $response->assertViewIs('customers.view-customer');
         $response->assertSee('No customers found.');
     }
 
@@ -42,7 +42,7 @@ class CustomerCrudTest extends TestCase
         $response = $this->get(route('create-customer'));
 
         $response->assertOk();
-        $response->assertViewIs('create-customer');
+        $response->assertViewIs('customers.create-customer');
         $response->assertSee('Create Customer');
     }
 
@@ -70,7 +70,7 @@ class CustomerCrudTest extends TestCase
         $response = $this->get(route('edit-customer', $customer));
 
         $response->assertOk();
-        $response->assertViewIs('edit-customer');
+        $response->assertViewIs('customers.edit-customer');
         $response->assertSee('Andi Wijaya');
         $response->assertSee('085555666777');
     }

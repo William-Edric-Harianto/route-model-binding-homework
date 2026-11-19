@@ -14,7 +14,7 @@ class CustomerController extends Controller
     {
         $customers = Customer::all();
 
-        return view('view-customer', compact('customers'));
+        return view('customers.view-customer', compact('customers'));
     }
 
     /**
@@ -22,7 +22,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('create-customer');
+        return view('customers.create-customer');
     }
 
     /**
@@ -43,7 +43,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        return view('edit-customer', compact('customer'));
+        return view('customers.edit-customer', compact('customer'));
     }
 
     /**

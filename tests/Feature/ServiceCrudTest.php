@@ -15,7 +15,7 @@ class ServiceCrudTest extends TestCase
         $response = $this->get(route('service-list'));
 
         $response->assertOk();
-        $response->assertViewIs('view-service');
+        $response->assertViewIs('services.view-service');
         $response->assertSee('No services found.');
     }
 
@@ -42,7 +42,7 @@ class ServiceCrudTest extends TestCase
         $response = $this->get(route('create-service'));
 
         $response->assertOk();
-        $response->assertViewIs('create-service');
+        $response->assertViewIs('services.create-service');
         $response->assertSee('Create Service');
     }
 
@@ -70,7 +70,7 @@ class ServiceCrudTest extends TestCase
         $response = $this->get(route('edit-service', $service));
 
         $response->assertOk();
-        $response->assertViewIs('edit-service');
+        $response->assertViewIs('services.edit-service');
         $response->assertSee('Screen Replacement');
         $response->assertSee('Replace cracked LCD display.');
     }

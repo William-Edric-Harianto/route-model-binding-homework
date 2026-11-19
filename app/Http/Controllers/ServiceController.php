@@ -14,7 +14,7 @@ class ServiceController extends Controller
     {
         $services = Service::all();
 
-        return view('view-service', compact('services'));
+        return view('services.view-service', compact('services'));
     }
 
     /**
@@ -22,7 +22,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view('create-service');
+        return view('services.create-service');
     }
 
     /**
@@ -43,7 +43,7 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        return view('edit-service', compact('service'));
+        return view('services.edit-service', compact('service'));
     }
 
     /**
