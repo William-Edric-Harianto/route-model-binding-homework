@@ -82,7 +82,7 @@ class CustomerCrudTest extends TestCase
             'phone_number' => '081111111111',
         ]);
 
-        $response = $this->put(route('update-customer', $customer), [
+        $response = $this->post(route('update-customer', $customer), [
             'name' => 'New Name',
             'phone_number' => '082222222222',
         ]);

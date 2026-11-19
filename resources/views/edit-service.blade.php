@@ -11,7 +11,6 @@
 
         <form action="{{ route('update-service', $service) }}" method="POST">
             @csrf
-            @method('PUT')
 
             <div class="form-group">
                 <label for="name">Name</label>

@@ -82,7 +82,7 @@ class ServiceCrudTest extends TestCase
             'description' => 'Old description.',
         ]);
 
-        $response = $this->put(route('update-service', $service), [
+        $response = $this->post(route('update-service', $service), [
             'name' => 'Updated Service',
             'description' => 'Updated description.',
         ]);
