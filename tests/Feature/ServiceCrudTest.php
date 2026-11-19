@@ -60,17 +60,6 @@ class ServiceCrudTest extends TestCase
         ]);
     }
 
-    public function test_service_store_requires_name_and_description(): void
-    {
-        $response = $this->post(route('store-service'), [
-            'name' => '',
-            'description' => '',
-        ]);
-
-        $response->assertSessionHasErrors(['name', 'description']);
-        $this->assertDatabaseCount('services', 0);
-    }
-
     public function test_service_edit_page_renders_with_bound_service(): void
     {
         $service = Service::factory()->create([

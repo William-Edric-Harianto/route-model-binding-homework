@@ -24,9 +24,6 @@
                     value="{{ old('name', $customer->name) }}"
                     required
                 >
-                @error('name')
-                    <div class="error-text">{{ $message }}</div>
-                @enderror
             </div>
 
             <div class="form-group">
@@ -39,9 +36,6 @@
                     maxlength="20"
                     value="{{ old('phone_number', $customer->phone_number) }}"
                 >
-                @error('phone_number')
-                    <div class="error-text">{{ $message }}</div>
-                @enderror
             </div>
 
             <div class="actions">

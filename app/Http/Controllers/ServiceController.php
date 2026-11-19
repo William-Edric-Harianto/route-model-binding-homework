@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index()
     {
         $services = Service::all();
 
@@ -22,7 +20,7 @@ class ServiceController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create()
     {
         return view('create-service');
     }
@@ -30,19 +28,20 @@ class ServiceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        Service::create($this->validateService($request));
+        Service::create([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+        ]);
 
-        return redirect()
-            ->route('service-list')
-            ->with('success', 'Service created successfully.');
+        return redirect()->route('service-list');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Service $service): View
+    public function edit(Service $service)
     {
         return view('edit-service', compact('service'));
     }
@@ -50,37 +49,23 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Service $service): RedirectResponse
+    public function update(Request $request, Service $service)
     {
-        $service->update($this->validateService($request));
+        $service->update([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+        ]);
 
-        return redirect()
-            ->route('service-list')
-            ->with('success', 'Service updated successfully.');
+        return redirect()->route('service-list');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Service $service): RedirectResponse
+    public function destroy(Service $service)
     {
         $service->delete();
 
-        return redirect()
-            ->route('service-list')
-            ->with('success', 'Service deleted successfully.');
-    }
-
-    /**
-     * Validate service input data.
-     *
-     * @return array{name: string, description: string}
-     */
-    private function validateService(Request $request): array
-    {
-        return $request->validate([
-            'name' => ['required', 'string', 'max:100'],
-            'description' => ['required', 'string', 'max:1000'],
-        ]);
+        return redirect()->route('service-list');
     }
 }

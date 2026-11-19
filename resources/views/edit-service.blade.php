@@ -24,9 +24,6 @@
                     value="{{ old('name', $service->name) }}"
                     required
                 >
-                @error('name')
-                    <div class="error-text">{{ $message }}</div>
-                @enderror
             </div>
 
             <div class="form-group">
@@ -39,9 +36,6 @@
                     maxlength="1000"
                     required
                 >{{ old('description', $service->description) }}</textarea>
-                @error('description')
-                    <div class="error-text">{{ $message }}</div>
-                @enderror
             </div>
 
             <div class="actions">

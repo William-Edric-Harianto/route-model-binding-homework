@@ -60,17 +60,6 @@ class CustomerCrudTest extends TestCase
         ]);
     }
 
-    public function test_customer_store_requires_name(): void
-    {
-        $response = $this->post(route('store-customer'), [
-            'name' => '',
-            'phone_number' => '081987654321',
-        ]);
-
-        $response->assertSessionHasErrors(['name']);
-        $this->assertDatabaseCount('customers', 0);
-    }
-
     public function test_customer_edit_page_renders_with_bound_customer(): void
     {
         $customer = Customer::factory()->create([

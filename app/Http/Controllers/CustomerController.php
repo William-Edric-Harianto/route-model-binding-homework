@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index()
     {
         $customers = Customer::all();
 
@@ -22,7 +20,7 @@ class CustomerController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create()
     {
         return view('create-customer');
     }
@@ -30,19 +28,20 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        Customer::create($this->validateCustomer($request));
+        Customer::create([
+            'name' => $request->input('name'),
+            'phone_number' => $request->input('phone_number'),
+        ]);
 
-        return redirect()
-            ->route('customer-list')
-            ->with('success', 'Customer created successfully.');
+        return redirect()->route('customer-list');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Customer $customer): View
+    public function edit(Customer $customer)
     {
         return view('edit-customer', compact('customer'));
     }
@@ -50,37 +49,23 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Customer $customer): RedirectResponse
+    public function update(Request $request, Customer $customer)
     {
-        $customer->update($this->validateCustomer($request));
+        $customer->update([
+            'name' => $request->input('name'),
+            'phone_number' => $request->input('phone_number'),
+        ]);
 
-        return redirect()
-            ->route('customer-list')
-            ->with('success', 'Customer updated successfully.');
+        return redirect()->route('customer-list');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Customer $customer): RedirectResponse
+    public function destroy(Customer $customer)
     {
         $customer->delete();
 
-        return redirect()
-            ->route('customer-list')
-            ->with('success', 'Customer deleted successfully.');
-    }
-
-    /**
-     * Validate customer input data.
-     *
-     * @return array{name: string, phone_number: string|null}
-     */
-    private function validateCustomer(Request $request): array
-    {
-        return $request->validate([
-            'name' => ['required', 'string', 'max:100'],
-            'phone_number' => ['nullable', 'string', 'max:20'],
-        ]);
+        return redirect()->route('customer-list');
     }
 }

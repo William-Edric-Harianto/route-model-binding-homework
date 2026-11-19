@@ -77,15 +77,6 @@
             font-size: 1.25rem;
             font-weight: 600;
         }
-        .alert-success {
-            background-color: #ecfdf5;
-            border: 1px solid #a7f3d0;
-            color: #065f46;
-            padding: 0.75rem 1rem;
-            border-radius: 6px;
-            margin-bottom: 1rem;
-            font-size: 0.875rem;
-        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -168,11 +159,6 @@
             outline: none;
             border-color: #0f172a;
         }
-        .error-text {
-            color: #dc2626;
-            font-size: 0.8125rem;
-            margin-top: 0.25rem;
-        }
         .empty-state {
             text-align: center;
             color: #64748b;
@@ -196,12 +182,6 @@
     </nav>
 
     <main class="container">
-        @if (session('success'))
-            <div class="alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
         @yield('content')
     </main>
 </body>
